@@ -1,0 +1,47 @@
+# Core scientific computing
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+scikit-learn>=1.0.0
+
+# Single-cell analysis
+scanpy>=1.9.0
+anndata>=0.8.0
+scvi-tools>=0.20.0
+scrublet>=0.2.3
+
+# Batch correction and integration
+harmonypy>=0.0.9
+scanorama>=1.7.0
+
+# Enrichment analysis
+decoupler>=1.4.0
+gseapy>=1.0.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Data handling
+h5py>=3.6.0
+openpyxl>=3.0.0
+xlrd>=2.0.0
+
+# Configuration and utilities
+pyyaml>=6.0
+tqdm>=4.62.0
+requests>=2.26.0
+
+# Statistical analysis
+statsmodels>=0.13.0
+pingouin>=0.5.0
+
+# Bioinformatics
+biopython>=1.79
+pybiomart>=0.2.0
+
+# Optional dependencies
+# celltypist>=1.3.0  # For automated cell type annotation
+# jupyter>=1.0.0  # For notebook interface
+# papermill>=2.3.0  # For programmatic notebook execution

@@ -1,0 +1,102 @@
+# Single Cell Meta-Analysis Pipeline Configuration
+
+# Data Collection Settings
+data:
+  sources:
+    - geo  # GEO datasets
+    - manual  # Manual file input
+  geo_datasets: []  # List of GEO accession numbers
+  manual_files: []  # List of manual data files
+  cache_dir: data/cache
+  species: human  # human or mouse
+
+# Quality Control Settings
+quality_control:
+  min_genes_per_cell: 200
+  max_genes_per_cell: 5000
+  min_cells_per_gene: 3
+  max_mito_percent: 20
+  doublet_detection: true
+  filter_ribosomal: false
+  remove_doublets: true
+
+# Normalization Settings
+normalization:
+  method: total_count  # total_count, median, scran
+  target_sum: 10000
+  log_transform: true
+  hvg_method: seurat_v3  # seurat_v3, seurat, cellranger
+  n_top_genes: 2000
+  subset_hvg: true
+  scale: true
+
+# Batch Correction Settings
+batch_correction:
+  method: harmony  # harmony, scanorama, scvi, combat
+  batch_key: dataset
+  use_pca: true
+  n_components: 50
+
+# Cell Type Annotation Settings
+annotation:
+  method: automatic  # automatic, manual, reference
+  reference_data: null
+  marker_genes: null
+  use_markers_db: true
+  confidence_threshold: 0.5
+
+# Differential Expression Settings
+differential_expression:
+  method: wilcoxon  # wilcoxon, t-test, logreg
+  min_pct: 0.1
+  logfc_threshold: 0.25
+  max_cells_per_group: 1000  # Downsample for speed
+
+# Enrichment Analysis Settings
+enrichment:
+  gene_sets:
+    - MSigDB_Hallmark
+    - MSigDB_C2_CP_REACTOME
+    - MSigDB_C5_GO_BP
+  min_gene_set_size: 15
+  max_gene_set_size: 500
+  fdr_threshold: 0.05
+  use_decoupler: true
+
+# Meta-Analysis Settings
+meta_analysis:
+  min_studies: 2
+  effect_size_method: mean  # mean, fixed, random
+  heterogeneity_threshold: 0.5
+  combine_pvalues_method: fisher  # fisher, stouffer
+
+# Visualization Settings
+visualization:
+  create_qc_plots: true
+  create_umap_plots: true
+  create_marker_plots: true
+  create_enrichment_plots: true
+  dpi: 300
+  figure_format: png
+  color_palette: Set1
+
+# Logging Settings
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  file_logging: true
+  console_logging: true
+
+# Performance Settings
+performance:
+  n_cores: 4
+  memory_limit_gb: 16
+  use_gpu: false
+  chunk_size: 1000
+
+# Output Settings
+output:
+  save_intermediate: true
+  compress_outputs: true
+  export_formats:
+    - h5ad
+    - csv

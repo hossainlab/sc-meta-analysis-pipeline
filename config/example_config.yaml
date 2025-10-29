@@ -1,0 +1,66 @@
+# Example Configuration for Testing
+# Copy this to my_config.yaml and modify for your data
+
+data:
+  sources:
+    - manual
+  geo_datasets: []
+  manual_files:
+    # Add your h5ad files here
+    # - data/raw/pbmc_3k.h5ad
+    # - data/raw/heart_cells.h5ad
+  cache_dir: data/cache
+  species: human
+
+quality_control:
+  min_genes_per_cell: 200
+  max_genes_per_cell: 6000
+  min_cells_per_gene: 3
+  max_mito_percent: 20
+  doublet_detection: true
+  filter_ribosomal: false
+
+normalization:
+  method: total_count
+  target_sum: 10000
+  log_transform: true
+  hvg_method: seurat_v3
+  n_top_genes: 2000
+  subset_hvg: true
+  scale: true
+
+batch_correction:
+  method: harmony
+  batch_key: dataset
+
+annotation:
+  method: automatic
+  use_markers_db: true
+
+differential_expression:
+  method: wilcoxon
+  min_pct: 0.1
+  logfc_threshold: 0.25
+
+enrichment:
+  gene_sets:
+    - MSigDB_Hallmark
+    - MSigDB_C2_CP_REACTOME
+  min_gene_set_size: 15
+  max_gene_set_size: 500
+  fdr_threshold: 0.05
+
+meta_analysis:
+  min_studies: 2
+  effect_size_method: mean
+
+visualization:
+  create_qc_plots: true
+  create_umap_plots: true
+  create_marker_plots: true
+  dpi: 300
+
+logging:
+  level: INFO
+  file_logging: true
+  console_logging: true
